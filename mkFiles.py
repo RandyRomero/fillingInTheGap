@@ -16,15 +16,9 @@ while True:
 		print('Try again')
 		continue
 
-for i in range(1, quantity + 1):
-	if i < 10:
-		newFile = open('.\\test\\file00' + str(i) + '.txt', 'w')
-		newFile.close()
-	elif i > 9 and i < 100:
-		newFile = open('.\\test\\file0' + str(i) + '.txt', 'w')
-		newFile.close()
-	else:
-		newFile = open('.\\test\\file' + str(i)  + '.txt', 'w')
+for i in range(1, quantity + 1): # to start with 1 and to end with 100
+		newFile = open('.\\test\\file{0:0>3}.txt'.format(i), 'w') 
+		# {0:0>3} .format(i)- all of this is needed to print out numbers with leading zeros . 3 is width, > is right align, 0 - is filler, 0: - I couldn't figure out
 		newFile.close()
 
 print(str(quantity) + ' files were successfully created.')		
