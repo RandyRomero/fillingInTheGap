@@ -9,6 +9,7 @@ logging.basicConfig(
     format = "%(levelname) -1s %(asctime)s line %(lineno)s: %(message)s",
     level = logging.DEBUG
 )
+logging.disable(logging.CRITICAL)
 
 pathToWork = ('.\\test')
 allesGut = True
@@ -33,17 +34,17 @@ def searchBoundaries():
 
 files, firstNumber, lastNumber = searchBoundaries()
 
-y = 1
+y = 0
 
 # look for missing files
 for i in range(firstNumber, lastNumber + 1):
 	currentFile = os.path.join(pathToWork, 'file{0:0>3}.txt'.format(i))
 	if not os.path.exists(currentFile):
-		print('file{0:0>3}.txt is missing!'.format(i))
+		
 		allesGut = False
 		
 		while True:
-			#loop recusively looks for file with next number and renames it as missing file
+			#loop recusively looks for file with next number and give it a name of a missing file
 
 			nextFile = os.path.join(pathToWork, 'file{0:0>3}.txt'.format(i + y))
 			
@@ -55,6 +56,7 @@ for i in range(firstNumber, lastNumber + 1):
 			else:
 				# if file doesn't exist - increment 'y' in order to look for the file with bigger ordinal number next time
 				if i + y < lastNumber:
+					print('file{0:0>3}.txt is missing!'.format(i + y))
 					y += 1
 					logging.debug(y)
 					continue
