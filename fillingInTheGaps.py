@@ -33,15 +33,15 @@ def searchBoundaries():
 
 files, firstNumber, lastNumber = searchBoundaries()
 
+y = 1
+
 # look for missing files
-for i in range(firstNumber, len(files) + 1):
+for i in range(firstNumber, lastNumber + 1):
 	currentFile = os.path.join(pathToWork, 'file{0:0>3}.txt'.format(i))
 	if not os.path.exists(currentFile):
 		print('file{0:0>3}.txt is missing!'.format(i))
 		allesGut = False
 		
-		y = 1
-
 		while True:
 			#loop recusively looks for file with next number and renames it as missing file
 
@@ -61,6 +61,7 @@ for i in range(firstNumber, len(files) + 1):
 				else:
 					print('There are no files to rename anymore')
 					break
-	
+	else:
+		logging.debug('file{0:0>3}.txt is here'.format(i))
 if allesGut:
 	print('All files are there.')
