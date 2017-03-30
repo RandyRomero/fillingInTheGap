@@ -3,7 +3,7 @@
 
 '''Program that finds all files with a given prefix, such as spam001.txt, spam002.txt, and so on, in a single folder and locates any gaps in the numbering (such as if there is a spam001.txt and spam003.txt but no spam002.txt). Have the program rename all the later files to close this gap.'''
 
-import os, logging, re
+import os, logging, re, sys
 
 logging.basicConfig(
     format = "%(levelname) -1s %(asctime)s line %(lineno)s: %(message)s",
@@ -60,7 +60,7 @@ for i in range(firstNumber, lastNumber + 1):
 					continue
 				else:
 					print('There are no files to rename anymore')
-					break
+					sys.exit()
 	else:
 		logging.debug('file{0:0>3}.txt is here'.format(i))
 if allesGut:
